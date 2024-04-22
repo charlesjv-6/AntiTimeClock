@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcadier</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <img id="image-viewer">
+    <script>
+        const imageViewer = document.getElementById('image-viewer');
+        const path = './images/';
+        const numberOfImages = 80;
+        const seconds = 60;
+
+        this.addEventListener('load', ()=> {
+            let imageIndex = 1;
+            imageViewer.src = path + `Screenshot (${imageIndex}).png`;
+
+            setInterval(()=> {
+                imageIndex = (imageIndex % numberOfImages) + 1;
+                imageViewer.src = path + `Screenshot (${imageIndex}).png`;
+            }, (seconds * 1000));
+        });
+    </script>
+</body>
+</html>
