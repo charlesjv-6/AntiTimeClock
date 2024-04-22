@@ -15,10 +15,30 @@
             height: 100%;
             object-fit: cover;
         }
+        .date-time {
+            position: fixed;
+            bottom: 0%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            justify-content: flex-end;
+            color: #fff;
+            margin-bottom: 12.5px;
+        }
+        .date, .time {
+            background-color: #1f1f1f;
+            font-family: 'Calibri';
+            margin-right: 54px;
+        }
     </style>
 </head>
 <body>
     <img id="image-viewer">
+    <div class="date-time">
+        <span class="time">07:00</span>
+        <span class="date">4/20/2024</span>
+    </div>
     <script>
         const imageViewer = document.getElementById('image-viewer');
         const path = './images/';
@@ -34,6 +54,28 @@
                 imageViewer.src = path + `Screenshot (${imageIndex}).png`;
             }, (seconds * 1000));
         });
+    </script>
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var timeElement = document.querySelector('.time');
+            var dateElement = document.querySelector('.date');
+            
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var timeString = hours + ':' + minutes;
+
+            var month = (now.getMonth() + 1).toString().padStart(2, '0');
+            var day = now.getDate().toString().padStart(2, '0');
+            var year = now.getFullYear();
+            var dateString = month + '/' + day + '/' + year;
+
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
     </script>
 </body>
 </html>
