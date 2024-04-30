@@ -4,34 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcadier</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .date-time {
-            position: fixed;
-            bottom: 0%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: end;
-            justify-content: flex-end;
-            color: #fff;
-            margin-bottom: 12.5px;
-        }
-        .date, .time {
-            background-color: #1f1f1f;
-            font-family: 'Calibri';
-            margin-right: 54px;
-        }
-    </style>
+    <link rel="stylesheet" href="./slideshow.css">
 </head>
 <body>
     <img id="image-viewer">
@@ -39,43 +12,29 @@
         <span class="time">07:00</span>
         <span class="date">4/20/2024</span>
     </div>
-    <script>
-        const imageViewer = document.getElementById('image-viewer');
-        const path = './images/';
-        const numberOfImages = 80;
-        const seconds = 60;
-
-        this.addEventListener('load', ()=> {
-            let imageIndex = 1;
-            imageViewer.src = path + `Screenshot (${imageIndex}).png`;
-
-            setInterval(()=> {
-                imageIndex = (imageIndex % numberOfImages) + 1;
-                imageViewer.src = path + `Screenshot (${imageIndex}).png`;
-            }, (seconds * 1000));
-        });
-    </script>
-    <script>
-        function updateTime() {
-            var now = new Date();
-            var timeElement = document.querySelector('.time');
-            var dateElement = document.querySelector('.date');
-            
-            var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().padStart(2, '0');
-            var timeString = hours + ':' + minutes;
-
-            var month = (now.getMonth() + 1).toString().padStart(2, '0');
-            var day = now.getDate().toString().padStart(2, '0');
-            var year = now.getFullYear();
-            var dateString = month + '/' + day + '/' + year;
-
-            timeElement.textContent = timeString;
-            dateElement.textContent = dateString;
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
-    </script>
+    <div class="option-window">
+        <header>OPTIONS</header>
+        <form action="submit" class="options">
+            <label for="interval-input">INTERVAL</label>
+            <input type="number" id="interval-input" placeholder="seconds" default="60"/>
+            <label></label>
+            <label>CLOCK SETTINGS</label>
+            <label>VISIBILITY</label>
+            <input type="checkbox" id="visibility"/>
+            <label for="bottom-pos-input">BOTTOM</label>
+            <input type="number" id="bottom-pos-input" placeholder="number"/>
+            <label for="right-pos-input">RIGHT</label>
+            <input type="number" id="right-pos-input" placeholder="number"/>
+            <label for="bg-color-input">FONT COLOR</label>
+            <input type="text" id="font-color-input" placeholder="#hex value"/>
+            <label for="bg-color-input">BACKGROUND COLOR</label>
+            <input type="text" id="bg-color-input" placeholder="#hex value"/>
+            <label for="bg-color-input">FONT SIZE</label>
+            <input type="number" id="font-size-input" placeholder="number"/>
+            <label></label>
+            <input type="submit" value="SAVE"/>
+        </form>
+    </div>
+    <script src="./slideshow.js"></script>
 </body>
 </html>

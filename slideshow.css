@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.date-time {
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: flex-end;
+    color: #fff;
+    margin-bottom: 12.5px;
+}
+.date, .time {
+    background-color: #1f1f1f;
+    font-family: 'Calibri';
+    margin-right: 54px;
+}
+.option-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #1f1f1f;
+    width: 500px;
+    height: fit-content;
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+.option-window header {
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    font-size: xx-large;
+    text-align: center;
+    color: #fff;
+    font-family: 'Calibri';
+    background-color: #0f0f0f;
+}
+.option-window form {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr auto auto;
+    gap: 10px;
+    padding: 10px;
+}
+.option-window form label {
+    text-align: end;
+    align-self: center;
+    font-size: large;
+    color: #fff;
+    font-family: 'Calibri';
+    padding-right: 20px;
+}
+#visibility {
+    justify-self: end;
+}
+input, #visibility {
+    height: 25px;
+    min-width: 25px;
+    padding: 5px;
+}
