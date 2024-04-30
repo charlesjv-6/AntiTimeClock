@@ -50,8 +50,8 @@ function handleSubmit(event) {
 function update(interval, x, y, bgColor, fontSize, fontColor, visibility) {
     visibility ? dateTimeElement.style.display = 'flex' : dateTimeElement.style.display = 'none';
     if(fontSize) {
-        timeElement.style.fontSize = fontSize;
-        dateElement.style.fontSize = fontSize;
+        timeElement.style.fontSize = `${fontSize}px`;
+        dateElement.style.fontSize = `${fontSize}px`;
     }
     if(bgColor) {
         timeElement.style.background = bgColor;
