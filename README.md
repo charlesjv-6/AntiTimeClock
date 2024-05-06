@@ -9,10 +9,16 @@ The Anti Time Clock is a web application designed to provide users with a tool t
 Features:
 
 Real-time display of screenshots: The application dynamically switches between screenshots at regular intervals, providing users with a continuous view of the captured images.
+
 Date and time overlay: Each screenshot is overlaid with the current date and time, allowing users to mask the date and time of the screenshot.
+
 Customizable settings: Users can customize settings such as interval duration between screenshots, position of the date and time overlay, and appearance options.
+
 Easy setup and usage: The application is user-friendly, with straightforward setup instructions and intuitive controls for navigation and customization.
+
+
 Purpose:
+
 The Anti Time Clock serves multiple purposes, including:
 
 Discreet time management: Users can utilize the application to manage their time more discreetly, avoiding potential scrutiny from monitoring tools or supervisors.
