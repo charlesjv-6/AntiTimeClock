@@ -12,13 +12,23 @@ let isOpen = false;
 let imageIndex = 1;
 let changeInterval;
 let imageArray = [];
+let format24hr = false;
 
 function updateTime() {
     var now = new Date();
     
-    var hours = now.getHours().toString().padStart(2, '0');
+    var hours = now.getHours();
     var minutes = now.getMinutes().toString().padStart(2, '0');
-    var timeString = hours + ':' + minutes;
+    
+    var timeString;
+    if (format24hr) {
+        var hours24 = hours.toString().padStart(2, '0');
+        timeString = hours24 + ':' + minutes;
+    } else {
+        var period = hours >= 12 ? 'PM' : 'AM';
+        var hours12 = (hours % 12 || 12).toString().padStart(2, '0');
+        timeString = hours12 + ':' + minutes + ' ' + period;
+    }
 
     var month = (now.getMonth() + 1).toString().padStart(2, '0');
     var day = now.getDate().toString().padStart(2, '0');
@@ -28,6 +38,7 @@ function updateTime() {
     timeElement.textContent = timeString;
     dateElement.textContent = dateString;
 }
+
 
 function uploadImages(event) {
     const files = event.target.files;
@@ -62,12 +73,14 @@ function handleSubmit(event) {
     const fontColor = document.getElementById('font-color-input').value || '#fff';
     const fontSize = document.getElementById('font-size-input').value || 12;
     const visibility = document.getElementById('visibility').checked;
+    const format = document.getElementById('format').checked;
 
-    update(parseInt(interval), parseFloat(rightPos), parseFloat(bottomPos), bgColor, parseFloat(fontSize), fontColor, visibility);
+    update(parseInt(interval), parseFloat(rightPos), parseFloat(bottomPos), bgColor, parseFloat(fontSize), fontColor, visibility, format);
 }
 
-function update(interval, x, y, bgColor, fontSize, fontColor, visibility) {
+function update(interval, x, y, bgColor, fontSize, fontColor, visibility, format) {
     visibility ? dateTimeElement.style.display = 'flex' : dateTimeElement.style.display = 'none';
+    format24hr = format;
     if(fontSize) {
         timeElement.style.fontSize = `${fontSize}px`;
         dateElement.style.fontSize = `${fontSize}px`;
