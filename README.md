@@ -21,7 +21,7 @@ Personal productivity: Users can enhance their personal productivity by visualiz
 How to Use:
 
 Installation: Simply download or clone the project repository from GitHub.
-Configuration: Customize settings such as interval duration, overlay position, and appearance. Press X to show/hide the option window. 
+Configuration: Customize settings such as interval duration, overlay position, and appearance. [[Press X to show/hide the option window]]
 Screenshot Collection: Place your screenshots in the designated folder within the project directory.
 Launch: Open the index.html file in a web browser to start the application.
 Customization: Modify settings or styles as needed to suit your preferences. Press X to show/hide the option window. 
