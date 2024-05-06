@@ -11,6 +11,7 @@ const numberOfImages = 80;
 let isOpen = false;
 let imageIndex = 1;
 let changeInterval;
+let imageArray = [];
 
 function updateTime() {
     var now = new Date();
@@ -27,6 +28,24 @@ function updateTime() {
     timeElement.textContent = timeString;
     dateElement.textContent = dateString;
 }
+
+function uploadImages(event) {
+    const files = event.target.files;
+    imageArray = [];
+  
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+    
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            imageArray.push(imageData);
+        };
+    
+        reader.readAsDataURL(file);
+    }
+}
+  
 
 function toggleOptionWindow() {
     isOpen = !isOpen;
@@ -68,10 +87,13 @@ function update(interval, x, y, bgColor, fontSize, fontColor, visibility) {
     if(y) {
         dateTimeElement.style.marginBottom = `${y}px`;
     }
+    
     clearInterval(changeInterval);
+
+    const defaultImage = path + `Screenshot (${imageIndex}).png`
     changeInterval = setInterval(()=> {
-        imageIndex = (imageIndex % numberOfImages) + 1;
-        imageViewer.src = path + `Screenshot (${imageIndex}).png`;
+        imageIndex = (imageIndex % imageArray.length ?? numberOfImages) + 1;
+        imageViewer.src = imageArray.length ? imageArray[imageIndex-1] : defaultImage;
     }, (interval * 1000));
 }
 

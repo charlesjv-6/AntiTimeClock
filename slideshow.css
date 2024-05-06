@@ -70,3 +70,16 @@ input, #visibility {
     min-width: 25px;
     padding: 5px;
 }
+.custom-file-upload, input[type="submit"] {
+    color: #fff;
+    height: 25px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+}
+.custom-file-upload input[type="file"] {
+    display: none;
+}

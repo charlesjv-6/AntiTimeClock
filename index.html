@@ -15,8 +15,13 @@
     <div class="option-window">
         <header>OPTIONS</header>
         <form action="submit" class="options">
+            <label>CUSTOM IMAGES</label>
+            <label for="file-upload" class="custom-file-upload">
+                <input id="file-upload" type="file" multiple onchange="const images = uploadImages(event);">
+                UPLOAD IMAGES
+            </label>            
             <label for="interval-input">INTERVAL</label>
-            <input type="number" id="interval-input" placeholder="seconds" default="60"/>
+            <input type="number" id="interval-input" placeholder="seconds" value="60"/>
             <label></label>
             <label>CLOCK SETTINGS</label>
             <label>VISIBILITY</label>
