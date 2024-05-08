@@ -9,8 +9,8 @@ const path = './images/';
 const numberOfImages = 80;
 
 let isOpen = false;
-let imageIndex = 1;
 let changeInterval;
+let imageIndex = 0;
 let imageArray = [];
 let format24hr = false;
 
@@ -103,15 +103,34 @@ function update(interval, x, y, bgColor, fontSize, fontColor, visibility, format
     
     clearInterval(changeInterval);
 
-    const defaultImage = path + `Screenshot (${imageIndex}).png`
     changeInterval = setInterval(()=> {
-        imageIndex = (imageIndex % imageArray.length ?? numberOfImages) + 1;
-        imageViewer.src = imageArray.length ? imageArray[imageIndex-1] : defaultImage;
+        imageViewer.src = getImage();
     }, (interval * 1000));
 }
 
+function getIndex() {
+    const threshold = imageArray.length || numberOfImages; 
+
+    return function() {
+        const currentIndex = imageIndex;
+        imageIndex++;
+        if (imageIndex >= threshold) {
+            imageIndex = 0;
+        }
+        return currentIndex;
+    };
+}
+
+
+function getImage() {
+    const index = getIndex();
+    const defaultImage = path + `Screenshot (${index()+1}).png`;
+
+    return imageArray.length ? imageArray[index()] : defaultImage;
+}
+
 this.addEventListener('load', ()=> {
-    imageViewer.src = path + `Screenshot (${imageIndex}).png`;
+    imageViewer.src = path + "Screenshot (1).png";
     optionWindow.style.display = 'none';
 
     optionsForm.addEventListener('submit', handleSubmit);
