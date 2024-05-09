@@ -15,30 +15,54 @@
     <div class="option-window">
         <header>OPTIONS</header>
         <form action="submit" class="options">
-            <label>CUSTOM IMAGES</label>
-            <label for="file-upload" class="custom-file-upload">
-                <input id="file-upload" type="file" multiple onchange="const images = uploadImages(event);">
-                UPLOAD IMAGES
-            </label>            
-            <label for="interval-input">INTERVAL</label>
-            <input type="number" id="interval-input" placeholder="seconds" value="60"/>
-            <label></label>
-            <span class="group-label">CLOCK SETTINGS</span>
-            <label>VISIBILITY</label>
-            <input type="checkbox" id="visibility"/>
-            <label>USE 24HR FORMAT</label>
-            <input type="checkbox" id="format"/>
-            <label for="bottom-pos-input">Y</label>
-            <input type="number" id="bottom-pos-input" placeholder="number"/>
-            <label for="right-pos-input">X</label>
-            <input type="number" id="right-pos-input" placeholder="number"/>
-            <label for="bg-color-input">FONT COLOR</label>
-            <input type="text" id="font-color-input" placeholder="#hex value"/>
-            <label for="bg-color-input">BACKGROUND COLOR</label>
-            <input type="text" id="bg-color-input" placeholder="#hex value"/>
-            <label for="bg-color-input">FONT SIZE</label>
-            <input type="number" id="font-size-input" placeholder="number"/>
-            <label></label>
+            <div class="setting-group">
+                <label for="file-upload" class="custom-file-upload">
+                    <input id="file-upload" type="file" multiple onchange="const images = uploadImages(event);">
+                    UPLOAD IMAGES
+                </label>
+                <span class="input">
+                    <label for="interval-input">INTERVAL</label>
+                    <input type="number" id="interval-input" placeholder="seconds" value="60"/>
+                </span>
+            </div>
+            <div class="clock-settings">
+                <span class="group-label">CLOCK SETTINGS</span>
+                <div class="setting-group">
+                    <span class="align-end checkbox">
+                        <label>VISIBILITY</label>
+                        <input type="checkbox" id="visibility"/>
+                    </span>
+                    <span class="align-end checkbox">
+                        <label>24HR FORMAT</label>
+                        <input type="checkbox" id="format"/>
+                    </span>
+                </div>
+                <div class="setting-group">
+                    <span class="input">
+                        <label for="bg-color-input">FONT COLOR</label>
+                        <input type="text" id="font-color-input" placeholder="#hex value"/>
+                    </span>
+                    <span class="input">
+                        <label for="bg-color-input">BG COLOR</label>
+                        <input type="text" id="bg-color-input" placeholder="#hex value"/>
+                    </span>
+                    <span class="input">
+                        <label for="bg-color-input">FONT SIZE</label>
+                        <input type="number" id="font-size-input" placeholder="number"/>
+                    </span>
+                </div>
+                <span class="group-label">CLOCK POSITION</span>
+                <div class="setting-group">
+                    <span class="input">
+                        <label for="bottom-pos-input">Y</label>
+                        <input type="number" id="bottom-pos-input" placeholder="number"/>
+                    </span>
+                    <span class="input">
+                        <label for="right-pos-input">X</label>
+                        <input type="number" id="right-pos-input" placeholder="number"/>
+                    </span>
+                </div>
+            </div>
             <input type="submit" value="SAVE"/>
         </form>
     </div>

@@ -60,7 +60,8 @@ img {
     border-radius: 5px;
 }
 .option-window form {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr 1.5fr;
     grid-template-rows: 1fr 1fr auto auto;
     gap: 10px;
@@ -95,6 +96,34 @@ input, #visibility {
     border: none;
     border-radius: 5px;
 }
+input[type="submit"] {
+    height: 35px;
+}
 .custom-file-upload input[type="file"] {
     display: none;
+}
+.clock-settings {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #005403;
+    gap: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.setting-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    row-gap: 10px;
+}
+.align-end {
+    justify-self: end;
+}
+.input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.checkbox {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 }
