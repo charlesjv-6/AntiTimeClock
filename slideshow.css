@@ -76,8 +76,15 @@ img {
     padding-right: 20px;
     font-weight: bold;
 }
-input[type="checkbox"] {
+input[type="checkbox"], input[type="color"] {
     justify-self: end;
+}
+input[type="color"]::-webkit-color-swatch {
+    height: 15px; 
+    width: 15px; 
+    align-self: center;
+    justify-self: center;
+    border-radius: 5px;
 }
 input, #visibility {
     height: 25px;
@@ -98,6 +105,12 @@ input, #visibility {
 }
 input[type="submit"] {
     height: 35px;
+}
+code {
+    text-align: center;
+}
+code b{
+    color: red;
 }
 .custom-file-upload input[type="file"] {
     display: none;

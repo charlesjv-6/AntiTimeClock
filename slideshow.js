@@ -13,6 +13,7 @@ let changeInterval;
 let imageIndex = 0;
 let imageArray = [];
 let format24hr = false;
+let isRandom = false;
 
 function updateTime() {
     var now = new Date();
@@ -74,8 +75,32 @@ function handleSubmit(event) {
     const fontSize = document.getElementById('font-size-input').value || 12;
     const visibility = document.getElementById('visibility').checked;
     const format = document.getElementById('format').checked;
+    const random = document.getElementById('randomize').checked;
+    
+    const data = {
+        interval: parseInt(interval),
+        y: parseFloat(bottomPos),
+        x: parseFloat(rightPos),
+        bgColor: bgColor,
+        fontColor: fontColor,
+        fontSize: parseFloat(fontSize),
+        visibility: visibility,
+        format: format,
+        random: random,
+    };
 
+    localStorage.setItem('atcw_settings', JSON.stringify(data));
+
+    isRandom = random;
     update(parseInt(interval), parseFloat(rightPos), parseFloat(bottomPos), bgColor, parseFloat(fontSize), fontColor, visibility, format);
+}
+
+function getFromLocalStorage() {
+    const storedData = localStorage.getItem('atcw_settings');
+    if (storedData) {
+        return JSON.parse(storedData);
+    } 
+    return null;
 }
 
 function update(interval, x, y, bgColor, fontSize, fontColor, visibility, format) {
@@ -112,10 +137,15 @@ function getIndex() {
     const threshold = imageArray.length || numberOfImages; 
 
     return function() {
-        const currentIndex = imageIndex;
-        imageIndex++;
-        if (imageIndex >= threshold) {
-            imageIndex = 0;
+        let currentIndex;
+        if (isRandom) {
+            currentIndex = Math.floor(Math.random() * threshold); 
+        } else {
+            currentIndex = imageIndex;
+            imageIndex++;
+            if (imageIndex >= threshold) {
+                imageIndex = 0;
+            }
         }
         return currentIndex;
     };
@@ -133,10 +163,32 @@ this.addEventListener('load', ()=> {
     imageViewer.src = path + "Screenshot (1).png";
     optionWindow.style.display = 'none';
 
+    const localData = getFromLocalStorage();
+    console.log(localData)
+
     optionsForm.addEventListener('submit', handleSubmit);
     setInterval(updateTime, 1000);
     updateTime();
-    update(60);
+
+    if(localData) {
+        const {interval, x, y, bgColor, fontColor, fontSize, visibility, format, random} = localData;
+
+        console.log(x, y);
+
+        document.getElementById('interval-input').value = interval;
+        document.getElementById('bottom-pos-input').value = parseFloat(y);
+        document.getElementById('right-pos-input').value = parseFloat(x);
+        document.getElementById('bg-color-input').value = bgColor;
+        document.getElementById('font-color-input').value = fontColor;
+        document.getElementById('font-size-input').value = parseFloat(fontSize);
+        document.getElementById('visibility').checked = visibility;
+        document.getElementById('format').checked = format;
+        document.getElementById('randomize').checked = random;
+
+        update(interval, x, y, bgColor, fontSize, fontColor, visibility, format);
+    } else {
+        update(60);
+    }
 });
 
 this.addEventListener('keydown', event => {

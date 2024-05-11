@@ -15,21 +15,26 @@
     <div class="option-window">
         <header>OPTIONS</header>
         <form action="submit" class="options">
+            <code><b>**NOTE**</b><br/><i>ALL UPLOADED IMAGES ARE NOT BEING STORED PERSISTENTLY IN THE SAME MANNER AS THE OTHER DATA VALUES.</i></code>
             <div class="setting-group">
                 <label for="file-upload" class="custom-file-upload">
                     <input id="file-upload" type="file" multiple onchange="const images = uploadImages(event);">
                     UPLOAD IMAGES
                 </label>
                 <span class="input">
-                    <label for="interval-input">INTERVAL</label>
+                    <label>INTERVAL</label>
                     <input type="number" id="interval-input" placeholder="seconds" value="60"/>
+                </span>
+                <span class="align-end checkbox">
+                    <label>RANDOMIZE</label>
+                    <input type="checkbox" id="randomize"/>
                 </span>
             </div>
             <div class="clock-settings">
                 <span class="group-label">CLOCK SETTINGS</span>
                 <div class="setting-group">
                     <span class="align-end checkbox">
-                        <label>VISIBILITY</label>
+                        <label>VISIBILE</label>
                         <input type="checkbox" id="visibility"/>
                     </span>
                     <span class="align-end checkbox">
@@ -40,26 +45,26 @@
                 <div class="setting-group">
                     <span class="input">
                         <label for="bg-color-input">FONT COLOR</label>
-                        <input type="text" id="font-color-input" placeholder="#hex value"/>
+                        <input type="color" id="font-color-input" value="#ffffff"/>
                     </span>
                     <span class="input">
                         <label for="bg-color-input">BG COLOR</label>
-                        <input type="text" id="bg-color-input" placeholder="#hex value"/>
+                        <input type="color" id="bg-color-input" value="#1f1f1f"/>
                     </span>
                     <span class="input">
                         <label for="bg-color-input">FONT SIZE</label>
-                        <input type="number" id="font-size-input" placeholder="number"/>
+                        <input type="number" id="font-size-input" placeholder="number" value="13"/>
                     </span>
                 </div>
                 <span class="group-label">CLOCK POSITION</span>
                 <div class="setting-group">
                     <span class="input">
                         <label for="bottom-pos-input">Y</label>
-                        <input type="number" id="bottom-pos-input" placeholder="number"/>
+                        <input type="number" id="bottom-pos-input" placeholder="number" value="12.5"/>
                     </span>
                     <span class="input">
                         <label for="right-pos-input">X</label>
-                        <input type="number" id="right-pos-input" placeholder="number"/>
+                        <input type="number" id="right-pos-input" placeholder="number" value="54"/>
                     </span>
                 </div>
             </div>
