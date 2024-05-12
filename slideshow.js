@@ -40,7 +40,6 @@ function updateTime() {
     dateElement.textContent = dateString;
 }
 
-
 function uploadImages(event) {
     const files = event.target.files;
     imageArray = [];
@@ -57,7 +56,6 @@ function uploadImages(event) {
         reader.readAsDataURL(file);
     }
 }
-  
 
 function toggleOptionWindow() {
     isOpen = !isOpen;
@@ -150,7 +148,6 @@ function getIndex() {
         return currentIndex;
     };
 }
-
 
 function getImage() {
     const index = getIndex();
