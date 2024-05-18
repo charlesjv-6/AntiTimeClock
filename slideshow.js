@@ -4,6 +4,7 @@ var dateElement = document.querySelector('.date');
 var dateTimeElement = document.querySelector('.date-time');
 var optionWindow = document.querySelector('.option-window');
 var optionsForm = document.querySelector('.options');
+var uploadPreviews = document.querySelector('.image-preview');
 
 const path = './images/';
 const numberOfImages = 80;
@@ -40,21 +41,60 @@ function updateTime() {
     dateElement.textContent = dateString;
 }
 
+function showPreview() {
+    if (imageArray.length > 0) {
+        clearPreview(); 
+
+        if (imageArray.length <= 7) {
+            imageArray.forEach(image => {
+                const imageElement = document.createElement('img');
+                imageElement.src = image;
+                uploadPreviews.appendChild(imageElement);
+            });
+        } else {
+            for (let i = 0; i < 6; i++) {
+                const imageElement = document.createElement('img');
+                imageElement.src = imageArray[i];
+                uploadPreviews.appendChild(imageElement);
+            }
+            const imageCountElement = document.createElement('span');
+            imageCountElement.innerHTML = `+${imageArray.length - 6}`;
+            uploadPreviews.appendChild(imageCountElement);
+        }
+    }
+}
+
+function clearPreview() {
+    while (uploadPreviews.firstChild) {
+        uploadPreviews.removeChild(uploadPreviews.firstChild);
+    }
+}
+
 function uploadImages(event) {
     const files = event.target.files;
     imageArray = [];
-  
+    let fileReadPromises = [];
+
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
-    
-        reader.onload = function(e) {
-            const imageData = e.target.result;
-            imageArray.push(imageData);
-        };
-    
+        const readPromise = new Promise((resolve, reject) => {
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                imageArray.push(imageData);
+                resolve();
+            };
+            reader.onerror = reject;
+        });
         reader.readAsDataURL(file);
+        fileReadPromises.push(readPromise);
     }
+
+    Promise.all(fileReadPromises).then(() => {
+        showPreview();
+    }).catch(error => {
+        console.error('Error reading files', error);
+    });
 }
 
 function toggleOptionWindow() {
