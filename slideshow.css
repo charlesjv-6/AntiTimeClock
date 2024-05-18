@@ -34,7 +34,7 @@ img {
     color: #fff;
     font-size: large;
 }
-.option-window {
+.option-window, .info-window {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -48,7 +48,7 @@ img {
     border-radius: 10px;
     padding: 5px;
 }
-.option-window header {
+.option-window header, .info-window header {
     width: 100%;
     height: 40px;
     padding-top: 5px;
@@ -58,6 +58,21 @@ img {
     font-family: 'Calibri';
     background-color: #005403;
     border-radius: 5px;
+}
+.info-window .info-content {
+    padding: 15px;
+    font-family: 'Calibri';
+}
+.info-window footer {
+    font-family: 'Calibri';
+    display: flex;
+    flex-direction: column-reverse;
+}
+.info-window footer span {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 5px 15px 5px 5px;
 }
 .option-window form {
     display: flex;
@@ -93,7 +108,7 @@ input, #visibility {
     border: none;
     border-radius: 5px;
 }
-.custom-file-upload, input[type="submit"] {
+.custom-file-upload, input[type="submit"], #close-btn {
     color: #fff;
     height: 25px;
     display: inline-block;
@@ -103,7 +118,7 @@ input, #visibility {
     border: none;
     border-radius: 5px;
 }
-input[type="submit"] {
+input[type="submit"], #close-btn {
     height: 35px;
 }
 code {

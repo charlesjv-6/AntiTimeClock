@@ -8,6 +8,24 @@
 </head>
 <body>
     <img id="image-viewer">
+    <div class="info-window">
+        <header>READ ME</header>
+        <div class="info-content">
+            <strong>WELCOME! YOU LAZY BAST*RD :D</strong><br/><br/>
+            The Anti Time Clock is a web application designed to provide users with a tool to manage their time more discreetly. It dynamically displays screenshots with an overlay of the current date and time. This application serves as a solution for users who want to switch between screenshots seamlessly while having a timestamp overlay, which could be useful for various purposes, including monitoring work activities, presentations, or personal projects.<br/><br/>
+            <strong>IMPORTANT: </strong>This should be always on fullscreen(Press F11), otherwise it will be so obvious.<br/><br/>
+            Rigth now, it is using my screenshots... 'cause I made this for my self :D<br/>
+            You can upload your own screenshots though, but, it won't get saved.<br/><br/>
+            <b>Press [X] to show/hide the option window</b>
+        </div>
+        <footer>
+            <button id="close-btn" onclick="hideReadMe(true)">BE GONE</button>
+            <span>
+                <label>DON'T SHOW AGAIN</label>
+                <input type="checkbox" id="dont-show-checkbox"/>
+            </span>
+        </footer>
+    </div>
     <div class="date-time">
         <span class="time">07:00</span>
         <span class="date">4/20/2024</span>

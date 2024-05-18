@@ -5,6 +5,8 @@ var dateTimeElement = document.querySelector('.date-time');
 var optionWindow = document.querySelector('.option-window');
 var optionsForm = document.querySelector('.options');
 var uploadPreviews = document.querySelector('.image-preview');
+var showReadMeToggle = document.getElementById('dont-show-checkbox');
+var readMe = document.querySelector('.info-window');
 
 const path = './images/';
 const numberOfImages = 80;
@@ -201,7 +203,13 @@ this.addEventListener('load', ()=> {
     optionWindow.style.display = 'none';
 
     const localData = getFromLocalStorage();
-    console.log(localData)
+    const showReadMe = ()=> {
+        const data = localStorage.getItem('atcw_settings_readme');
+        if (data) {
+            return JSON.parse(data).show;
+        } 
+        return false;
+    }
 
     optionsForm.addEventListener('submit', handleSubmit);
     setInterval(updateTime, 1000);
@@ -209,9 +217,7 @@ this.addEventListener('load', ()=> {
 
     if(localData) {
         const {interval, x, y, bgColor, fontColor, fontSize, visibility, format, random} = localData;
-
-        console.log(x, y);
-
+        
         document.getElementById('interval-input').value = interval;
         document.getElementById('bottom-pos-input').value = parseFloat(y);
         document.getElementById('right-pos-input').value = parseFloat(x);
@@ -223,9 +229,21 @@ this.addEventListener('load', ()=> {
         document.getElementById('randomize').checked = random;
 
         update(interval, x, y, bgColor, fontSize, fontColor, visibility, format);
+        showReadMeToggle.checked = showReadMe();
+        hideReadMe(showReadMe());
     } else {
         update(60);
     }
+});
+
+function hideReadMe(isHidden) {
+    if(isHidden) {
+        readMe.style.display = 'none';
+    }
+}
+
+showReadMeToggle.addEventListener('change', function(event) {
+    localStorage.setItem('atcw_settings_readme', JSON.stringify({ show: event.target.checked }));
 });
 
 this.addEventListener('keydown', event => {
